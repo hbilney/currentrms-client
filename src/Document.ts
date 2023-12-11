@@ -1,0 +1,47 @@
+export enum ReminderFrequency {
+    None,
+    Daily,
+    Weekly
+}
+
+export interface Document {
+    name: string,
+    description: string,
+    module_type: string,
+    system: boolean,
+    active: boolean,
+    layout: string,
+    header_layout: string,
+    footer_layout: string,
+    stylesheet: string,
+    page_size: string,
+    orientation: string,
+    states: [],
+    statuses: [],
+    types: [],
+    membership_types: [],
+    page_width: number,
+    page_height: number,
+    margin_top: number,
+    margin_left: number,
+    margin_right: number,
+    margin_bottom: number,
+    colors: [],
+    fields: [],
+    layout_flags: [],
+    roles: [],
+    use_for_approval: boolean,
+    require_signature: boolean,
+    approval_custom_fields: [],
+    approval_custom_text: string,
+    approval_accept_text: string,
+    approval_decline_text: string,
+    use_for_signing: boolean,
+    default_signing_message: string
+    days_to_sign: number,
+    reminder_frequency: number,
+    library_document_ids: [],
+    created_at: string,
+    updated_at: string,
+    id: number
+}
