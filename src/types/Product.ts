@@ -1,4 +1,4 @@
-import {Accessory, Attachment, CustomField, TaxClass, Icon, ServiceRateType} from "./index";
+import {Accessory, Attachment, CustomField, TaxClass, Icon, ServiceRateType, Inspection, Rate} from "./index";
 
 
 export interface ProductGroup {
@@ -71,9 +71,9 @@ export interface Product {
     alternative_products: [Product],
     attachments: [Attachment],
     product_surcharges: [],
-    rental_rates: [],
-    sale_rates: [],
-    item_inspections: [],
+    rental_rates: [Rate], // TODO: This is an array of objects
+    sale_rates: [Rate], // TODO: This is an array of objects
+    item_inspections: [Inspection], // TODO: This is an array of objects
     created_at: string,
     updated_at: string
 }

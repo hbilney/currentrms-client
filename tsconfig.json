@@ -3,6 +3,7 @@
     "src/**/*"
   ],
   "compilerOptions": {
+    "lib": ["es2020", "dom"],
     "outDir": "./dist"
   }
 }
