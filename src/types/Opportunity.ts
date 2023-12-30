@@ -1,4 +1,4 @@
-import {CustomField, Participant, Address, Member} from "./index";
+import {CustomField, Participant, Address, Member, Destination, Venue} from "./index";
 
 export enum OpportunityState {
     Enquiry,
@@ -103,6 +103,13 @@ export interface Opportunity {
     owner: Member,
     member: Member,
     billing_address: Address,
-    venue: object,
+    venue: Venue,
+    destination: Destination
     opportunity_surcharges: []
+}
+
+export interface OpportunityResponse {
+    opportunity: Opportunity,
+    opportunities: [Opportunity],
+    errors: [string]
 }

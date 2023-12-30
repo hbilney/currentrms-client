@@ -185,3 +185,9 @@ export interface ProductRevenue {
     created_at: string,
     updated_at: string
 }
+
+export interface ProductResponse {
+    product: Product,
+    products: Product[],
+    errors: [string]
+}

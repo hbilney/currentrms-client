@@ -46,3 +46,9 @@ export interface Accessory {
     created_at: string,
     updated_at: string
 }
+
+export interface AccessoryResponse {
+    accessory?: Accessory,
+    accessories?: Accessory[],
+    errors?: [string]
+}

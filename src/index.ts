@@ -1,3 +1,3 @@
 export * from './client'
 export * from './types'
-export * from './responses'
+export * from './classes'

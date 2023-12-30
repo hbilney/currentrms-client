@@ -1,16 +1,65 @@
-import {Product, ProductResponse} from "./index";
-
-interface Response {
-    status: number,
-    data: {}
-}
+import {CAccessory, CProduct, COpportunity} from "./index";
 
 export class CurrentRMSClient {
     private apiVersion: string
     private static apiKey: string
     private static apiBaseUrl: string
     private static subdomain: string
-    public product: Products;
+    public accessory: CAccessory;
+    // public action: CAction;
+    // public activity: CActivity;
+    // public attachment: CAttachment;
+    // public discussionComment: CDiscussionComment;
+    // public costGroup: CCostGroup;
+    // public country: CCountry;
+    // public customFieldGroup: CCustomFieldGroup;
+    // public customField: CCustomField;
+    // public discountCategory: CDiscountCategory;
+    // public discussion: CDiscussion;
+    // public document: CDocument;
+    // public inspection: CInspection;
+    // public inspectionResult: CInspectionResult;
+    // public invoice: CInvoice;
+    // public invoiceItem: CInvoiceItem;
+    // public invoiceDocument: CInvoiceDocument;
+    // public invoiceTransaction: CInvoiceTransaction; TODO: Add these to invoice class.
+    // public listOfValues: CListOfValues;
+    // public member: CMember;
+    public opportunity: COpportunity;
+    // public opportunityCost: COpportunityCost;
+    // public opportunityItem: COpportunityItem;
+    // public opportunityItemAsset: COpportunityItemAsset;
+    // public opportunityDocument: COpportunityDocument; TODO: Add these to opportunity class
+    // public organisationTaxClass: COrganisationTaxClass;
+    // public productGroup: CProductGroup;
+    public product: CProduct;
+    // public productAvailability: CProductAvailability;
+    // public productInventory: CProductInventory;
+    // public productRevenue: CProductRevenue;
+    // public productTaxClass: CProductTaxClass; TODO: Add these to product class.
+    // public project: CProject;
+    // public projectDocument: CProjectDocument; TODO: Add this to project class.
+    // public purchaseOrder: CPurchaseOrder;
+    // public purchaseOrderDocument: CPurchaseOrderDocument; TODO: Add this to PO Class.
+    // public quarantine: CQuarantine;
+    // public rate: CRate;
+    // public rateDefinition: CRateDefinition;
+    // public serialisedComponent: CSerialisedComponent;
+    // public service: CService;
+    // public serviceResource: CServiceResource;
+    // public stockBooking: CStockBooking;
+    // public stockCheck: CStockCheck;
+    // public stockCheckItem: CStockCheckItem;
+    // public stockLevel: CStockLevel;
+    // public serviceStockLevel: CServiceStockLevel;
+    // public stockTransaction: CStockTransaction;
+    // public storeTransfer: CStoreTransfer;
+    // public store: CStore;
+    // public supplierCost: CSupplierCost;
+    // public vehicle: CVehicle;
+    // public webhook: CWebhook;
+    // public webhookLog: CWebhookLog; TODO: Add to Webhook class.
+    // public tagCloud: CTagCloud;
 
     constructor(apiVersion: string, apiKey: string, subdomain: string) {
         this.apiVersion = apiVersion
@@ -18,7 +67,9 @@ export class CurrentRMSClient {
         CurrentRMSClient.apiBaseUrl = `https://api.current-rms.com/api/v${this.apiVersion}`
         CurrentRMSClient.subdomain = subdomain
 
-        this.product = new Products()
+        this.accessory = new CAccessory()
+        this.product = new CProduct()
+        this.opportunity = new COpportunity()
     }
 
     static async fetchGet<T>(endpoint: string, init?: RequestInit): Promise<T> {
@@ -38,7 +89,7 @@ export class CurrentRMSClient {
             return (await response.json()) as T;
         } catch (err) {
             console.error(err)
-            return err
+            return err as T
         }
     }
 
@@ -60,7 +111,7 @@ export class CurrentRMSClient {
             return (await response.json()) as T;
         } catch (err) {
             console.error(err)
-            throw err
+            throw err as T
         }
     }
 
@@ -82,7 +133,7 @@ export class CurrentRMSClient {
             return (await response.json()) as T;
         } catch (err) {
             console.error(err)
-            throw err
+            throw err as T
         }
     }
 
@@ -103,71 +154,8 @@ export class CurrentRMSClient {
             return (await response.json()) as T;
         } catch (err) {
             console.error(err)
-            throw err
+            throw err as T
         }
     }
 }
 
-class Products {
-    public async get(product_id: string) {
-        const endpoint = `/products/${product_id}`
-        try {
-            const res = await CurrentRMSClient.fetchGet<ProductResponse>(endpoint)
-            if (res.product) return res.product
-            if (res.errors) return res.errors
-        } catch (err) {
-            return err
-        }
-    }
-
-    public async getAll() {
-        const endpoint = `/products`
-        try {
-            const res = await CurrentRMSClient.fetchGet<ProductResponse>(endpoint)
-            if (res.products) return res.products
-            if (res.errors) return res.errors
-        } catch (err) {
-            return err
-        }
-    }
-
-    public async create(product: Product) {
-        const endpoint = `/products`
-        try {
-            return await CurrentRMSClient.fetchPost(endpoint, product)
-        } catch (err) {
-            return err
-        }
-    }
-
-    public async update(product_id: number, product: Product) {
-        const endpoint = `/products/${product_id}`
-        try {
-            return await CurrentRMSClient.fetchPut(endpoint, product)
-        } catch (err) {
-            return err
-        }
-    }
-
-    public async delete(product_id: number) {
-        const endpoint = `/products/${product_id}`
-        try {
-            return await CurrentRMSClient.fetchDelete(endpoint)
-        } catch (err) {
-            return err
-        }
-    }
-
-    public async clone(product_id: string) {
-        const endpoint = `/products/${product_id}/clone`
-        try {
-            const res = await CurrentRMSClient.fetchGet<ProductResponse>(endpoint)
-            if (res.product) return res.product
-            if (res.errors) return res.errors
-        } catch (err) {
-            return err
-        }
-    }
-
-    // TODO: Prepare Document & Prepare Document PDF
-}

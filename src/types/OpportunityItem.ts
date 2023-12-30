@@ -101,5 +101,12 @@ export interface OpportunityItem {
     lead_charging_period_name: string,
     has_shortage: boolean,
     has_group_deal: boolean,
-    is_in_deal: boolean
+    is_in_deal: boolean,
+    parent_opportunity_item_id: number
+}
+
+export interface OpportunityItemResponse {
+    opportunity_item: OpportunityItem,
+    opportunity_items: [OpportunityItem],
+    errors: [string]
 }
