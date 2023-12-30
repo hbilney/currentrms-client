@@ -1,6 +1,6 @@
 {
   "name": "currentrms-types",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Typings for CurrentRMS API",
   "main": "dist/index.js",
   "scripts": {
