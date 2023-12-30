@@ -17,7 +17,7 @@ export class COpportunity {
     }
 
     public async items(opportunity_id: string): Promise<OpportunityItemResponse> {
-        const endpoint = `/opportunities/${opportunity_id}/`
+        const endpoint = `/opportunities/${opportunity_id}/opportunity_items`
         try {
             return await CurrentRMSClient.fetchGet<OpportunityItemResponse>(endpoint)
         } catch (err) {
