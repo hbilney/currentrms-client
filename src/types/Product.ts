@@ -56,7 +56,7 @@ export interface Product {
     purchase_cost_group_id: number,
     purchase_price: number,
     assigned_inspection_ids: [number],
-    custom_fields: [CustomField],
+    custom_fields: {[key: string]: string},
     id: string,
     allowed_stock_type_name: string,
     stock_method_name: string,
